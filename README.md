@@ -1,4 +1,4 @@
-# PROYECTO BASE: [Nombre de la Aplicación] - Software Factory SENA
+# PROYECTO BASE: 11. Crud. Ciclo de vida de un crud - Software Factory SENA
 
 **Metodología:** *"Del Requerimiento al Producto"*
 
