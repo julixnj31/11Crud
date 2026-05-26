@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CRUD Completo</title>
+
+  <!-- Conectar CSS -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="container">
+
+    <!-- TITULO -->
+    <h1>CRUD de tareas</h1>
+
+    <!-- FORMULARIO -->
+    <form id="task-form">
+
+      <!-- INPUT TITULO -->
+      <input
+        type="text"
+        id="task-title"
+        placeholder="Ingrese una tarea"
+      >
+
+      <!-- BOTON -->
+      <button type="submit">
+
+        Guardar
+
+      </button>
+
+    </form>
+
+    <!-- MENSAJES -->
+    <p id="message"></p>
+
+    <!-- LISTA TAREAS -->
+    <ul id="task-list"></ul>
+
+  </main>
+
+  <!-- CONECTAR JS -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>
