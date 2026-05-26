@@ -1,16 +1,19 @@
-// =========================================
-// ISSUE #1
-// SELECCIONAR ELEMENTOS DEL DOM
-// =========================================
-//
-// Aqui obtenemos:
-//
-// ✔ formulario
-// ✔ inputs
-// ✔ tabla
-// ✔ mensajes
-//
-// =========================================
+const URL =
+  "http://localhost:3000/tasks";
+
+
+
+/* ISSUE #1
+ SELECCIONAR ELEMENTOS DEL DOM
+
+
+ Aqui obtenemos:
+
+ ✔ formulario
+ ✔ inputs
+ ✔ tabla
+ ✔ mensajes
+*/
 
 const taskForm =
   document.getElementById("task-form");
@@ -36,10 +39,6 @@ const message =
 // ISSUE #1
 // URL API
 // =========================================
-
-const URL =
-  "http://localhost:3000/tasks";
-
 
 
 // =========================================
