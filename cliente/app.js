@@ -202,7 +202,30 @@ async function createTask(event) {
 
     });
 
+    // ISSUE #8
+    // MENSAJE EXITO
 
+    message.textContent =
+      "Tarea creada correctamente";
+
+    // Limpiar formulario
+    taskForm.reset();
+
+    // ISSUE #7
+    // ACTUALIZAR DOM
+
+    getTasks();
+
+  } catch (error) {
+
+    console.log(error);
+
+    message.textContent =
+      "Error al crear tarea";
+
+  }
+
+}
 
 
 
