@@ -1,6 +1,16 @@
-
-const URL =
-  "http://localhost:3000/tasks";
+// =========================================
+// ISSUE #1
+// SELECCIONAR ELEMENTOS DEL DOM
+// =========================================
+//
+// Aqui obtenemos:
+//
+// ✔ formulario
+// ✔ inputs
+// ✔ tabla
+// ✔ mensajes
+//
+// =========================================
 
 const taskForm =
   document.getElementById("task-form");
@@ -21,18 +31,29 @@ const message =
   document.getElementById("message");
 
 
-/* ISSUE #2
- 
- OBTENER TAREAS (READ)
- =========================================
 
- Esta funcion:
+// =========================================
+// ISSUE #1
+// URL API
+// =========================================
 
- ✔ consulta tareas
- ✔ usa GET
- ✔ actualiza DOM
+const URL =
+  "http://localhost:3000/tasks";
 
- ========================================= */
+
+
+// =========================================
+// ISSUE #2
+// OBTENER TAREAS (READ)
+// =========================================
+//
+// Esta funcion:
+//
+// ✔ consulta tareas
+// ✔ usa GET
+// ✔ actualiza DOM
+//
+// =========================================
 
 async function getTasks() {
 
@@ -114,21 +135,15 @@ async function getTasks() {
 
 }
 
-
-
 /* ISSUE #3
- ISSUE #3
  CREAR TAREA (CREATE)
- =========================================
-
  Esta funcion:
-
  ✔ captura submit
  ✔ valida campos
  ✔ envia POST
  ✔ actualiza DOM
+*/
 
- ========================================= */ 
 
 async function createTask(event) {
 
@@ -145,11 +160,9 @@ async function createTask(event) {
   const status =
     taskStatus.value;
 
-  // =====================================
   // ISSUE #4
   // VALIDACIONES
-  // =====================================
-
+ 
   if (title === "") {
 
     message.textContent =
@@ -229,19 +242,14 @@ async function createTask(event) {
 
 
 
-// =========================================
-// ISSUE #5
-// EDITAR TAREA (UPDATE)
-// =========================================
-//
-// Esta funcion:
-//
-// ✔ modifica tarea
-// ✔ usa PATCH
-// ✔ actualiza DOM
-//
-// =========================================
+/* ISSUE #5
+ EDITAR TAREA (UPDATE)
+ Esta funcion:
 
+ ✔ modifica tarea
+ ✔ usa PATCH
+ ✔ actualiza DOM
+*/
 async function editTask(id) {
 
   // Pedir nuevo titulo
@@ -294,16 +302,50 @@ async function editTask(id) {
 
 }
 
+/*ISSUE #6
+ ELIMINAR TAREA (DELETE)
+ Esta funcion:
 
+✔ elimina tarea
+ ✔ usa DELETE
+ ✔ actualiza DOM
+*/
 
+async function deleteTask(id) {
 
+  // Confirmar
+  const confirmDelete =
+    confirm(
+      "¿Eliminar tarea?"
+    );
 
+  // Cancelar
+  if (!confirmDelete) return;
 
+  try {
+    // Enviar DELETE
+    await fetch(`${URL}/${id}`, {
+      method: "DELETE"
+    });
+    // Mensaje
+    message.textContent =
+      "Tarea eliminada";
 
-// =========================================
-// ISSUE #3
-// EVENTO SUBMIT
-// =========================================
+    // Actualizar DOM
+    getTasks();
+
+  } catch (error) {
+    console.log(error);
+    message.textContent =
+      "Error al eliminar";
+
+  }
+
+}
+
+/*ISSUE #3
+ EVENTO SUBMIT
+*/
 
 taskForm.addEventListener(
   "submit",
@@ -312,3 +354,19 @@ taskForm.addEventListener(
 
 
 
+/* ISSUE #13
+ 
+ VALIDACION FINAL CRUD
+
+ ✔ CREATE
+ ✔ READ
+ ✔ UPDATE
+ ✔ DELETE
+ ✔ DOM DINAMICO
+ ✔ FETCH
+ ✔ VALIDACIONES
+ ✔ MENSAJES
+
+*/
+
+getTasks();
