@@ -1,10 +1,17 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "name": "Administrador"
+    }
+  ],
   "tasks": [
     {
       "id": 1,
       "title": "Aprender CRUD",
-      "description": "Practicar fetch",
-      "status": "Pendiente"
+      "description": "Practicar fetch con json-server",
+      "status": "Pendiente",
+      "userId": 1
     }
   ]
 }

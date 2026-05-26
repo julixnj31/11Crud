@@ -3,66 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRUD Completo</title>
+  <title>CRUD de Tareas con Usuarios</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <main class="container">
-    <h1>CRUD de tareas</h1>
-    <form id="task-form">
+    <header class="page-header">
+      <h1>CRUD de Tareas con Usuarios</h1>
+      <p class="subtitle">Crea, edita y elimina tareas vinculadas a usuarios sin recargar la página.</p>
+    </header>
 
-      <!-- TITULO -->
-      <input
-        type="text"
-        id="task-title"
-        placeholder="Ingrese el titulo"
-      >
-      <!-- DESCRIPCION -->
-      <textarea
-        id="task-description"
-        placeholder="Ingrese descripcion"
-      ></textarea>
-      <!-- ESTADO -->
-      <select id="task-status">
-        <option value="">
-          Seleccione estado
-        </option>
-        <option value="Pendiente">
-          Pendiente
-        </option>
-        <option value="En progreso">
-          En progreso
-        </option>
-        <option value="Completada">
-          Completada
-        </option>
-      </select>
+    <section class="dashboard">
+      <aside class="side-panel">
+        <div class="card">
+          <h2>Crear o editar tarea</h2>
+          <form id="task-form" class="form-card">
+            <label for="task-title">Título</label>
+            <input type="text" id="task-title" placeholder="Ingrese el título" required>
 
-      <!-- BOTON -->
-      <button type="submit">
-        Guardar tarea
-      </button>
-    </form>
+            <label for="task-description">Descripción</label>
+            <textarea id="task-description" placeholder="Ingrese la descripción" rows="4" required></textarea>
 
-    <p id="message"></p>
+            <label for="task-status">Estado</label>
+            <select id="task-status" required>
+              <option value="">Seleccione estado</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="En progreso">En progreso</option>
+              <option value="Completada">Completada</option>
+            </select>
 
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Titulo</th>
-          <th>Descripcion</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="task-list"></tbody>
-    </table>
+            <label for="task-user">Usuario</label>
+            <select id="task-user" required>
+              <option value="">Seleccione usuario</option>
+            </select>
+
+            <button type="submit" id="task-submit" class="button button--primary">Guardar tarea</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Usuarios</h2>
+          <form id="user-form" class="form-card">
+            <label for="user-name">Nombre de usuario</label>
+            <input type="text" id="user-name" placeholder="Ingrese su usuario" required>
+            <button type="submit" class="button button--secondary">Agregar usuario</button>
+          </form>
+
+          <div class="user-list-card">
+            <h3>Lista de usuarios</h3>
+            <ul id="user-list" class="user-list"></ul>
+          </div>
+        </div>
+      </aside>
+
+      <section class="content-panel">
+        <div class="card">
+          <div class="table-header">
+            <h2>Lista de tareas</h2>
+            <p class="table-description">Todas las tareas se cargan desde la API y se actualizan dinámicamente.</p>
+          </div>
+
+          <div id="message" class="message"></div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Título</th>
+                  <th>Descripción</th>
+                  <th>Estado</th>
+                  <th>Usuario</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="task-list"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </section>
   </main>
 
   <script src="app.js"></script>
-
 </body>
-
 </html>
