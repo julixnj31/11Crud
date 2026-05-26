@@ -128,3 +128,15 @@ taskForm.addEventListener(
   "submit",
   createTask
 );
+
+// Validar input vacio
+if (title === "") {
+
+  message.textContent =
+    "Debe ingresar una tarea";
+
+  message.style.color =
+    "red";
+
+  return;
+}
