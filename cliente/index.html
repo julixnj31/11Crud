@@ -1,55 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>CRUD Completo</title>
-
-  <!-- Conectar CSS -->
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-
-  <!-- CONTENEDOR PRINCIPAL -->
   <main class="container">
-
-    <!-- TITULO -->
     <h1>CRUD de tareas</h1>
-
-    <!-- FORMULARIO -->
     <form id="task-form">
 
-      <!-- INPUT TITULO -->
+      <!-- TITULO -->
       <input
         type="text"
         id="task-title"
-        placeholder="Ingrese una tarea"
+        placeholder="Ingrese el titulo"
       >
+      <!-- DESCRIPCION -->
+      <textarea
+        id="task-description"
+        placeholder="Ingrese descripcion"
+      ></textarea>
+      <!-- ESTADO -->
+      <select id="task-status">
+        <option value="">
+          Seleccione estado
+        </option>
+        <option value="Pendiente">
+          Pendiente
+        </option>
+        <option value="En progreso">
+          En progreso
+        </option>
+        <option value="Completada">
+          Completada
+        </option>
+      </select>
 
       <!-- BOTON -->
       <button type="submit">
-
-        Guardar
-
+        Guardar tarea
       </button>
-
     </form>
 
-    <!-- MENSAJES -->
     <p id="message"></p>
 
-    <!-- LISTA TAREAS -->
-    <ul id="task-list"></ul>
-
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Titulo</th>
+          <th>Descripcion</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="task-list"></tbody>
+    </table>
   </main>
 
-  <!-- CONECTAR JS -->
   <script src="app.js"></script>
 
 </body>
