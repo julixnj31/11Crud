@@ -34,26 +34,13 @@ const message =
   document.getElementById("message");
 
 
-
-// =========================================
-// ISSUE #1
-// URL API
-// =========================================
-
-
-// =========================================
-// ISSUE #2
-// OBTENER TAREAS (READ)
-// =========================================
-//
-// Esta funcion:
-//
-// ✔ consulta tareas
-// ✔ usa GET
-// ✔ actualiza DOM
-//
-// =========================================
-
+/* ISSUE #2
+/ OBTENER TAREAS (READ)
+ Esta funcion:
+ ✔ consulta tareas
+ ✔ usa GET
+ ✔ actualiza DOM
+*/
 async function getTasks() {
 
   try {
@@ -95,38 +82,26 @@ async function getTasks() {
           <button
             onclick="editTask(${task.id})"
           >
-
             Editar
-
           </button>
-
           <!-- ISSUE #6 -->
           <!-- BOTON ELIMINAR -->
-
           <button
             onclick="deleteTask(${task.id})"
           >
-
             Eliminar
-
           </button>
 
         </td>
-
       `;
-
       // Insertar fila
       taskList.appendChild(row);
-
     });
 
   } catch (error) {
-
     // ISSUE #9
     // MANEJO ERRORES
-
     console.log(error);
-
     message.textContent =
       "Error al cargar tareas";
 
