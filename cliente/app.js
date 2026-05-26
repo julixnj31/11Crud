@@ -204,6 +204,79 @@ async function createTask(event) {
 
 
 
+
+
+// =========================================
+// ISSUE #5
+// EDITAR TAREA (UPDATE)
+// =========================================
+//
+// Esta funcion:
+//
+// ✔ modifica tarea
+// ✔ usa PATCH
+// ✔ actualiza DOM
+//
+// =========================================
+
+async function editTask(id) {
+
+  // Pedir nuevo titulo
+  const newTitle =
+    prompt(
+      "Nuevo titulo"
+    );
+
+  // Validar
+  if (!newTitle) return;
+
+  try {
+
+    // Actualizar API
+    await fetch(`${URL}/${id}`, {
+
+      method: "PATCH",
+
+      headers: {
+
+        "Content-Type":
+          "application/json"
+
+      },
+
+      body:
+        JSON.stringify({
+
+          title: newTitle
+
+        })
+
+    });
+
+    // Mensaje
+    message.textContent =
+      "Tarea actualizada";
+
+    // Actualizar DOM
+    getTasks();
+
+  } catch (error) {
+
+    console.log(error);
+
+    message.textContent =
+      "Error al actualizar";
+
+  }
+
+}
+
+
+
+
+
+
+
 // =========================================
 // ISSUE #3
 // EVENTO SUBMIT
