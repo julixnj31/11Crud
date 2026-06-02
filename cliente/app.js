@@ -1,5 +1,4 @@
-﻿const TASKS_URL = "http://localhost:3000/tasks";
-const USERS_URL = "http://localhost:3000/users";
+﻿const URL = "http://10.5.225.223:3000";
 
 /* ==================================================
     Aquí seleccionamos los elementos que hay en la página
@@ -23,26 +22,22 @@ let users = []; // Lista de usuarios que trae el servidor
     Funciones pequeñas que ayudan al resto del código
    ================================================== */
 function showMessage(text, type = "success") {
-  // Muestra un mensaje al usuario en la parte superior
   message.textContent = text;
   message.className = `message message--${type}`;
 }
 
 function clearMessage() {
-  // Limpia el mensaje para que no quede el texto antiguo
   message.textContent = "";
   message.className = "message";
 }
 
 function resetTaskForm() {
-  // Devuelve el formulario de tarea al estado inicial
   taskForm.reset();
   editingTaskId = null;
   taskSubmitButton.textContent = "Guardar tarea";
 }
 
 function populateUserSelect() {
-  // Llena el selector de usuarios en el formulario de tarea
   taskUser.innerHTML = "<option value=''>Seleccione usuario</option>";
   users.forEach(user => {
     const option = document.createElement("option");
@@ -53,7 +48,6 @@ function populateUserSelect() {
 }
 
 function renderUserList() {
-  // Muestra la lista de usuarios que ya están guardados
   userList.innerHTML = "";
   if (users.length === 0) {
     const emptyItem = document.createElement("li");
@@ -70,7 +64,6 @@ function renderUserList() {
 }
 
 function buildTableRow(task) {
-  // Prepara una fila de la tabla para mostrar una tarea nueva
   const row = document.createElement("tr");
   const user = users.find(userItem => userItem.id === task.userId);
 
@@ -104,9 +97,8 @@ function buildTableRow(task) {
     Carga de datos desde la API
    ================================================== */
 async function loadUsers() {
-  // Trae los usuarios guardados en el servidor
   try {
-    const response = await fetch(USERS_URL);
+    const response = await fetch(`${URL}/users`);
     if (!response.ok) {
       throw new Error("No se pudo cargar la lista de usuarios.");
     }
@@ -121,9 +113,8 @@ async function loadUsers() {
 }
 
 async function loadTasks() {
-  // Trae las tareas guardadas en el servidor
   try {
-    const response = await fetch(TASKS_URL);
+    const response = await fetch(`${URL}/tasks`);
     if (!response.ok) {
       throw new Error("No se pudo cargar las tareas.");
     }
@@ -153,7 +144,6 @@ async function loadTasks() {
     Registrar usuario nuevo
    ================================================== */
 async function addUser(event) {
-  // Evita que la página se recargue al enviar el formulario
   event.preventDefault();
   clearMessage();
 
@@ -164,7 +154,7 @@ async function addUser(event) {
   }
 
   try {
-    const response = await fetch(USERS_URL, {
+    const response = await fetch(`${URL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: nameValue })
@@ -187,7 +177,6 @@ async function addUser(event) {
     Crear o actualizar tarea
    ================================================== */
 async function saveTask(event) {
-  // Evita que la página se recargue al enviar el formulario
   event.preventDefault();
   clearMessage();
 
@@ -204,7 +193,7 @@ async function saveTask(event) {
   const taskData = { title, description, status, userId };
 
   try {
-    const url = editingTaskId ? `${TASKS_URL}/${editingTaskId}` : TASKS_URL;
+    const url = editingTaskId ? `${URL}/tasks/${editingTaskId}` : `${URL}/tasks`;
     const method = editingTaskId ? "PATCH" : "POST";
     const response = await fetch(url, {
       method,
@@ -233,7 +222,7 @@ async function editTask(id) {
   clearMessage();
 
   try {
-    const response = await fetch(`${TASKS_URL}/${id}`);
+    const response = await fetch(`${URL}/tasks/${id}`);
     if (!response.ok) {
       throw new Error("No se pudo cargar la tarea para editar.");
     }
@@ -262,7 +251,7 @@ async function deleteTask(id) {
   if (!confirmDelete) return;
 
   try {
-    const response = await fetch(`${TASKS_URL}/${id}`, { method: "DELETE" });
+    const response = await fetch(`${URL}/tasks/${id}`, { method: "DELETE" });
     if (!response.ok) {
       throw new Error("No se pudo eliminar la tarea.");
     }
